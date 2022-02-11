@@ -33,6 +33,7 @@
       // Get Element refererences
       const tempEl = document.getElementById('temp')
       const descEl = document.getElementById('desc')
+      const apiKey = 'b9e061a66bb3a1f7e1fe6b30a21ac42a'
       const formEl = document.getElementById('form')
       const zipInput = document.getElementById('zip')
 
@@ -40,7 +41,12 @@
       formEl.addEventListener('submit', (e) => {
         e.preventDefault()
         const zip = zipInput.value
-        getWeather(zip)
+        getWeather(apiKey, zip, (jsonresp) => {
+          console.log("loaded weather")
+          console.log(jsonresp)
+          tempEl.innerHTML = jsonresp.main.temp
+          descEl.innerHTML = jsonresp.weather[0].description
+        })
       })
            
     </script>
